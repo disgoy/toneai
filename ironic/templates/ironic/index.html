@@ -7,7 +7,11 @@
 </head>
 <body>
     <div>
-        Hello world
+        <h1>Ironic Form</h1>
+        <form action="/ironic/" method="POST">{%csrf_token%}
+            <input type="text" name="message" placeholder="Enter your message">
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </body>
 </html>
