@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import os
 from dotenv import load_dotenv
 import requests
+import json
 
 load_dotenv()
 
@@ -21,7 +22,6 @@ def getLLMResponse(inp, llm="gpt-4o-mini"):
         print(llm)
         return output
 
-
 def index(request):
     if (request.method == 'GET'):
         return render(request, "ironic/index.html")
@@ -29,6 +29,5 @@ def index(request):
         input = request.POST.get('message')
         output = getLLMResponse(input, "gpt-3.5-turbo")
         print(output)
-        return HttpResponse(f"the output is: {output}")
-    
+        return JsonResponse({"data": output, "message": "Response successfully generated", "success" : True})
 
