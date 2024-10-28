@@ -31,13 +31,14 @@ def index(request):
             "success": False
         }, status=400)
 
-    output = getLLMResponse(input, tone, "gpt-3.5-turbo")
+    output = getLLMResponse(input_message, tone, "gpt-3.5-turbo")
     return JsonResponse({"data": output, "message": "Response successfully generated", "success" : True})
 
 def getLLMResponse(inp, tone, llm="gpt-4o-mini"):
         openai_key = os.getenv("OPENAI_KEY")
         openai_url = 'https://api.openai.com/v1/chat/completions'
-        system_prompt = "You are given a message that someone texted with a tone. I want you to respond with a suitable response I should send in the corresponding tone. Reply with JUST the message and nothing else"
+        system_prompt = "Read the provided message to understand the content and tone, then generate a response matching its style, formality, and length, ensuring coherence and conversational flow."
+
         user_prompt = f"Message is: {inp}. Tone is: {tone}"
         data = { "model": llm,
                 "messages": [{"role": "system", "content": system_prompt},{"role": "user", "content": user_prompt}]
