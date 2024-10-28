@@ -31,7 +31,7 @@ def index(request):
             "success": False
         }, status=400)
 
-    output = getLLMResponse(input_message, tone, "gpt-3.5-turbo")
+    output = getLLMResponse(input_message, tone)
     return JsonResponse({"data": output, "message": "Response successfully generated", "success" : True})
 
 def getLLMResponse(inp, tone, llm="gpt-4o-mini"):
