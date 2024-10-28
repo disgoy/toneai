@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5^4w5n3@&&#@e+*-#3_8x-rpw-)8so5^evgelmys+a0eg-yy1l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["toneai-backend.aryanbharti.com", "localhost"]
 
 
 # Application definition
