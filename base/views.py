@@ -6,10 +6,13 @@ import requests
 from dotenv import load_dotenv
 import requests
 import json
+from django_ratelimit.decorators import ratelimit
+
 
 load_dotenv()
 
 # Create your views here.
+@ratelimit(key='ip', rate='5/m')
 def index(request):
     if (request.method != 'POST'):
        return JsonResponse({

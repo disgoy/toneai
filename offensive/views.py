@@ -5,11 +5,13 @@ from dotenv import load_dotenv
 import requests
 import json
 from .ml import isOffensive
+from django_ratelimit.decorators import ratelimit
 
 load_dotenv()
 
 # Create your views here.
 # If it's a post request, get the information and make a http response to an api and then return the contents of it inside HTTPResponse()
+@ratelimit(key='ip', rate='5/m')
 def index(request):
     if (request.method != 'POST'):
        return JsonResponse({
