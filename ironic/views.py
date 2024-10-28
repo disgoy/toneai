@@ -32,6 +32,6 @@ def index(request):
     output = isIronic(input_message)
     print(output)
     return JsonResponse({"tone": {
-        "type" : "ironic", "value" : str(output)
+        "type" : "ironic", "value" : int(output * 100)
     }, "message": "Response successfully generated", "success" : True})
 

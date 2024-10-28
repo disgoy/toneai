@@ -24,10 +24,13 @@ def preprocess(text):
 def isIronic(message) -> float:
     task='irony'
     MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
+
     local_model_path = os.path.join(os.getcwd(), MODEL)
 
-    tokenizer = AutoTokenizer.from_pretrained(local_model_path)
-
+    if os.path.exists(local_model_path):
+        tokenizer = AutoTokenizer.from_pretrained(local_model_path)
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(MODEL)
     # download label mapping
     labels=[]
     mapping_link = f"https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/{task}/mapping.txt"

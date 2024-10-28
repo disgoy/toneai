@@ -32,5 +32,5 @@ def index(request):
     output = isOffensive(input_message)
     print(output)
     return JsonResponse({"tone": {
-        "type" : "offensive", "value" : str(output)
+        "type" : "offensive", "value" : int(output * 100)
     }, "message": "Response successfully generated", "success" : True})

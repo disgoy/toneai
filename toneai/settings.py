@@ -68,7 +68,14 @@ TEMPLATES = [
     },
 ]
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+    }
+}
 WSGI_APPLICATION = 'toneai.wsgi.application'
+
 
 
 # Database
@@ -112,6 +119,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+SILENCED_SYSTEM_CHECKS = [
+    'django_ratelimit.E003',  # Silences the error about atomic increment
+    'django_ratelimit.W001',  # Silences the warning about unsupported cache backend
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
