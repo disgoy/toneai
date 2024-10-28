@@ -37,9 +37,10 @@ def index(request):
 def getLLMResponse(inp, tone, llm="gpt-4o-mini"):
         openai_key = os.getenv("OPENAI_KEY")
         openai_url = 'https://api.openai.com/v1/chat/completions'
-        system_prompt = "Read the provided message to understand the content and tone, then generate a response matching its style, formality, and length, ensuring coherence and conversational flow."
 
-        user_prompt = f"Message is: {inp}. Tone is: {tone}"
+        system_prompt = "Analyze the input tone, style, and language patterns, then generate a casual, Gen-Z response that matches the intent and flows naturally with informal expressions or slang where fitting."
+
+        user_prompt = f"{inp}"
         data = { "model": llm,
                 "messages": [{"role": "system", "content": system_prompt},{"role": "user", "content": user_prompt}]
             }
